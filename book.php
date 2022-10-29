@@ -77,7 +77,7 @@
                     </select><br>
                     <label for="tripDate">Trip Date:</label>
                     <input type="date" id="tripDate" name="tripDate"><br>
-                    <input type="image" value="logo.png" id="submit">
+                    <input type="submit" value="submit" id="submit">
                 </form>
             </div>
     </main>
