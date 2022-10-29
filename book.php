@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +10,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli">
 </head>
 <body>
+
+
     <header class="header-bg">
         <div id="logo">
             <img src="img/paddle-white.png"> 
             <h1>Halifax Canoe & Kayak</h1>
         </div>
-        <div class="menu">
+
+        <?php
+            $file = file_get_contents('menu.html', true);
+            echo "$file";
+        ?>
+        <!-- <div class="menu">
             <nav class="main-menu">  
                 <div class="main-nav-menu">
                     <a href="/">Home</a>
@@ -32,9 +40,11 @@
                 <div class="nav-item"><a href="book.php">Book an Adventure</a></div>
                 <div class="nav-item"><a href="admin.html">Admin</a></div>
             </div>
-        </div>
+        </div> -->
     </header>
     <main class="container">
+
+       
 
             <div id="header-banner">
                 <h1>Book an Adventure</h1>
@@ -42,21 +52,32 @@
             <div class="form-content">
                 <h1>Adventure Reservation</h1>
                 <p>Just Some Quick Details:</p>
+
+                <?php
+        $test = "before form";
+        
+        if (isset($_GET["submit_x"])) {
+                $email = htmlspecialchars($_GET["email"] ?? "", ENT_QUOTES);
+                $location = htmlspecialchars($_GET["location"] ?? "", ENT_QUOTES);
+                $date = htmlspecialchars($_GET["tripDate"] ?? "", ENT_QUOTES);
+
+        }
+    ?>
             </div>
             <div class="form-fields">
-                <form id="booking" name="booking" method="GET">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email"><br>
+                <form  id="booking" action="thankyou.php" method="get">
+                <label for="email">Email:</label>    
+                <input type="text" id="email" name="email"><br>
                     <label for="location">Location</label>
                     <select id="location" name="location">
-                        <option>Select an option</option>
-                        <option>Halifax Adventure</option>
-                        <option>Sydney Adventure</option>
-                        <option>PEI Adventure</option>
+                        <option value="">Select an option</option>
+                        <option value="Halifax Adventure">Halifax Adventure</option>
+                        <option value="Sydney Adventure">Sydney Adventure</option>
+                        <option value="PEI Adventure">PEI Adventure</option>
                     </select><br>
                     <label for="tripDate">Trip Date:</label>
                     <input type="date" id="tripDate" name="tripDate"><br>
-                    <input type="button" value="Submit" id="submit-button">
+                    <input type="image" value="logo.png" id="submit">
                 </form>
             </div>
     </main>
@@ -66,4 +87,4 @@
     </footer>
     <script src="main.js"></script>
 </body>
-</html>
+</html> 

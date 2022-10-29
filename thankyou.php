@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,25 +18,10 @@
             <img src="img/paddle-white.png"> 
             <h1>Halifax Canoe & Kayak</h1>
         </div>
-        <div class="menu">
-            <nav class="main-menu">  
-                <div class="main-nav-menu">
-                    <a href="/">Home</a>
-                    <a href="booking.html">Book an Adventure</a>
-                    <a href="admin.html">Admin</a>
-                </div>
-            </nav>
-        </div>
-        <div class="hamMenu">
-           
-            <img src="img/hamburger.png" width="40" height="40">
-        
-            <div class="nav-menu">
-                <div class="nav-item"><a href="/">Home</a></div>
-                <div class="nav-item"><a href="booking.html">Book an Adventure</a></div>
-                <div class="nav-item"><a href="admin.html">Admin</a></div>
-            </div>
-        </div>
+        <?php
+            $file = file_get_contents('menu.html', true);
+            echo "$file";
+        ?>
     </header>
     <main class="container">
 
@@ -40,25 +29,20 @@
                 <h1>Book an Adventure</h1>
             </div>
             <div class="form-content">
-                <h1>Adventure Reservation</h1>
-                <p>Just Some Quick Details:</p>
-            </div>
-            <div class="form-fields">
-                <form id="booking" name="booking" method="GET">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email"><br>
-                    <label for="location">Location</label>
-                    <select id="location" name="location">
-                        <option>Select an option</option>
-                        <option>Halifax Adventure</option>
-                        <option>Sydney Adventure</option>
-                        <option>PEI Adventure</option>
-                    </select><br>
-                    <label for="tripDate">Trip Date:</label>
-                    <input type="date" id="tripDate" name="tripDate"><br>
-                    <input type="button" value="Submit" id="submit-button">
-                </form>
-            </div>
+                
+
+            <?php
+               $email = htmlspecialchars($_GET["email"] ?? "", ENT_QUOTES);
+               $location = htmlspecialchars($_GET["location"] ?? "", ENT_QUOTES);
+               $date = htmlspecialchars($_GET["tripDate"] ?? "", ENT_QUOTES);
+
+               echo "<div> 
+               <h1>Thank you</h1>
+               <p>Thank you: $email</p>
+               <p>We will contact you about the $location trip on the $date</p> 
+               </div>";
+            ?>
+                
     </main>
 
     <footer>
